@@ -1,3 +1,6 @@
+# A ChaCha20 RISC-V implementation using only the RV32M Multiply Extension
+# The flow of this file follows the [RFC](https://www.rfc-editor.org/rfc/rfc7539.html) by design
+
 # Rotate src left by n bits and store in dst
 .macro rotl dst, src, n
 	sll					t1, \src, \n
