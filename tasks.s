@@ -1,3 +1,10 @@
+# Compilation instructions:
+# git clone https://github.com/FreeRTOS/FreeRTOS-Kernel.git --depth=1
+# git clone https://github.com/FreeRTOS/FreeRTOS.git --depth=1
+# cd FreeRTOS-Kernel/
+# cp ../FreeRTOS/FreeRTOS/Demo/RISC-V_RV32_QEMU_VIRT_GCC/*.h include
+# riscv32-unknown-linux-gnu-gcc -S -o tasks.s tasks.c -Iinclude -Iportable/GCC/RISC-V
+
 	.file	"tasks.c"
 	.option nopic
 	.attribute arch, "rv32i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0"
