@@ -3,11 +3,11 @@
 # git clone https://github.com/FreeRTOS/FreeRTOS.git --depth=1
 # cd FreeRTOS-Kernel/
 # cp ../FreeRTOS/FreeRTOS/Demo/RISC-V_RV32_QEMU_VIRT_GCC/*.h include
-# riscv32-unknown-linux-gnu-gcc -S -o tasks.s tasks.c -Iinclude -Iportable/GCC/RISC-V
+# riscv32-unknown-linux-gnu-gcc -S -o tasks.s tasks.c -Iinclude -Iportable/GCC/RISC-V -march=rv32imd
 
 	.file	"tasks.c"
 	.option nopic
-	.attribute arch, "rv32i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0"
+	.attribute arch, "rv32i2p1_m2p0_f2p2_d2p2_zicsr2p0"
 	.attribute unaligned_access, 0
 	.attribute stack_align, 16
 	.text
@@ -69,7 +69,7 @@ uxTopUsedPriority:
 .LC0:
 	.string	"tasks.c"
 	.text
-	.align	1
+	.align	2
 	.type	prvCreateStaticTask, @function
 prvCreateStaticTask:
 .LFB6:
@@ -157,7 +157,7 @@ prvCreateStaticTask:
 	.cfi_endproc
 .LFE6:
 	.size	prvCreateStaticTask, .-prvCreateStaticTask
-	.align	1
+	.align	2
 	.globl	xTaskCreateStatic
 	.type	xTaskCreateStatic, @function
 xTaskCreateStatic:
@@ -208,7 +208,7 @@ xTaskCreateStatic:
 	.cfi_endproc
 .LFE7:
 	.size	xTaskCreateStatic, .-xTaskCreateStatic
-	.align	1
+	.align	2
 	.type	prvCreateTask, @function
 prvCreateTask:
 .LFB8:
@@ -281,7 +281,7 @@ prvCreateTask:
 	.cfi_endproc
 .LFE8:
 	.size	prvCreateTask, .-prvCreateTask
-	.align	1
+	.align	2
 	.globl	xTaskCreate
 	.type	xTaskCreate, @function
 xTaskCreate:
@@ -333,7 +333,7 @@ xTaskCreate:
 	.cfi_endproc
 .LFE9:
 	.size	xTaskCreate, .-xTaskCreate
-	.align	1
+	.align	2
 	.type	prvInitialiseNewTask, @function
 prvInitialiseNewTask:
 .LFB10:
@@ -478,7 +478,7 @@ prvInitialiseNewTask:
 	.cfi_endproc
 .LFE10:
 	.size	prvInitialiseNewTask, .-prvInitialiseNewTask
-	.align	1
+	.align	2
 	.type	prvAddNewTaskToReadyList, @function
 prvAddNewTaskToReadyList:
 .LFB11:
@@ -651,7 +651,7 @@ prvAddNewTaskToReadyList:
 	.cfi_endproc
 .LFE11:
 	.size	prvAddNewTaskToReadyList, .-prvAddNewTaskToReadyList
-	.align	1
+	.align	2
 	.globl	vTaskDelete
 	.type	vTaskDelete, @function
 vTaskDelete:
@@ -815,7 +815,7 @@ vTaskDelete:
 	.cfi_endproc
 .LFE12:
 	.size	vTaskDelete, .-vTaskDelete
-	.align	1
+	.align	2
 	.globl	xTaskDelayUntil
 	.type	xTaskDelayUntil, @function
 xTaskDelayUntil:
@@ -928,7 +928,7 @@ xTaskDelayUntil:
 	.cfi_endproc
 .LFE13:
 	.size	xTaskDelayUntil, .-xTaskDelayUntil
-	.align	1
+	.align	2
 	.globl	vTaskDelay
 	.type	vTaskDelay, @function
 vTaskDelay:
@@ -983,7 +983,7 @@ vTaskDelay:
 	.cfi_endproc
 .LFE14:
 	.size	vTaskDelay, .-vTaskDelay
-	.align	1
+	.align	2
 	.globl	eTaskGetState
 	.type	eTaskGetState, @function
 eTaskGetState:
@@ -1133,7 +1133,7 @@ eTaskGetState:
 	.cfi_endproc
 .LFE15:
 	.size	eTaskGetState, .-eTaskGetState
-	.align	1
+	.align	2
 	.globl	uxTaskPriorityGet
 	.type	uxTaskPriorityGet, @function
 uxTaskPriorityGet:
@@ -1193,7 +1193,7 @@ uxTaskPriorityGet:
 	.cfi_endproc
 .LFE16:
 	.size	uxTaskPriorityGet, .-uxTaskPriorityGet
-	.align	1
+	.align	2
 	.globl	uxTaskPriorityGetFromISR
 	.type	uxTaskPriorityGetFromISR, @function
 uxTaskPriorityGetFromISR:
@@ -1230,7 +1230,7 @@ uxTaskPriorityGetFromISR:
 	.cfi_endproc
 .LFE17:
 	.size	uxTaskPriorityGetFromISR, .-uxTaskPriorityGetFromISR
-	.align	1
+	.align	2
 	.globl	uxTaskBasePriorityGet
 	.type	uxTaskBasePriorityGet, @function
 uxTaskBasePriorityGet:
@@ -1290,7 +1290,7 @@ uxTaskBasePriorityGet:
 	.cfi_endproc
 .LFE18:
 	.size	uxTaskBasePriorityGet, .-uxTaskBasePriorityGet
-	.align	1
+	.align	2
 	.globl	uxTaskBasePriorityGetFromISR
 	.type	uxTaskBasePriorityGetFromISR, @function
 uxTaskBasePriorityGetFromISR:
@@ -1327,7 +1327,7 @@ uxTaskBasePriorityGetFromISR:
 	.cfi_endproc
 .LFE19:
 	.size	uxTaskBasePriorityGetFromISR, .-uxTaskBasePriorityGetFromISR
-	.align	1
+	.align	2
 	.globl	vTaskPrioritySet
 	.type	vTaskPrioritySet, @function
 vTaskPrioritySet:
@@ -1566,7 +1566,7 @@ vTaskPrioritySet:
 	.cfi_endproc
 .LFE20:
 	.size	vTaskPrioritySet, .-vTaskPrioritySet
-	.align	1
+	.align	2
 	.globl	vTaskSuspend
 	.type	vTaskSuspend, @function
 vTaskSuspend:
@@ -1755,7 +1755,7 @@ vTaskSuspend:
 	.cfi_endproc
 .LFE21:
 	.size	vTaskSuspend, .-vTaskSuspend
-	.align	1
+	.align	2
 	.type	prvTaskIsTaskSuspended, @function
 prvTaskIsTaskSuspended:
 .LFB22:
@@ -1829,7 +1829,7 @@ prvTaskIsTaskSuspended:
 	.cfi_endproc
 .LFE22:
 	.size	prvTaskIsTaskSuspended, .-prvTaskIsTaskSuspended
-	.align	1
+	.align	2
 	.globl	vTaskResume
 	.type	vTaskResume, @function
 vTaskResume:
@@ -1984,7 +1984,7 @@ vTaskResume:
 	.cfi_endproc
 .LFE23:
 	.size	vTaskResume, .-vTaskResume
-	.align	1
+	.align	2
 	.globl	xTaskResumeFromISR
 	.type	xTaskResumeFromISR, @function
 xTaskResumeFromISR:
@@ -2129,7 +2129,7 @@ xTaskResumeFromISR:
 .LC1:
 	.string	"IDLE"
 	.text
-	.align	1
+	.align	2
 	.type	prvCreateIdleTasks, @function
 prvCreateIdleTasks:
 .LFB25:
@@ -2242,7 +2242,7 @@ prvCreateIdleTasks:
 	.cfi_endproc
 .LFE25:
 	.size	prvCreateIdleTasks, .-prvCreateIdleTasks
-	.align	1
+	.align	2
 	.globl	vTaskStartScheduler
 	.type	vTaskStartScheduler, @function
 vTaskStartScheduler:
@@ -2306,7 +2306,7 @@ vTaskStartScheduler:
 	.cfi_endproc
 .LFE26:
 	.size	vTaskStartScheduler, .-vTaskStartScheduler
-	.align	1
+	.align	2
 	.globl	vTaskEndScheduler
 	.type	vTaskEndScheduler, @function
 vTaskEndScheduler:
@@ -2362,7 +2362,7 @@ vTaskEndScheduler:
 	.cfi_endproc
 .LFE27:
 	.size	vTaskEndScheduler, .-vTaskEndScheduler
-	.align	1
+	.align	2
 	.globl	vTaskSuspendAll
 	.type	vTaskSuspendAll, @function
 vTaskSuspendAll:
@@ -2389,7 +2389,7 @@ vTaskSuspendAll:
 	.cfi_endproc
 .LFE28:
 	.size	vTaskSuspendAll, .-vTaskSuspendAll
-	.align	1
+	.align	2
 	.globl	xTaskResumeAll
 	.type	xTaskResumeAll, @function
 xTaskResumeAll:
@@ -2662,7 +2662,7 @@ xTaskResumeAll:
 	.cfi_endproc
 .LFE29:
 	.size	xTaskResumeAll, .-xTaskResumeAll
-	.align	1
+	.align	2
 	.globl	xTaskGetTickCount
 	.type	xTaskGetTickCount, @function
 xTaskGetTickCount:
@@ -2688,7 +2688,7 @@ xTaskGetTickCount:
 	.cfi_endproc
 .LFE30:
 	.size	xTaskGetTickCount, .-xTaskGetTickCount
-	.align	1
+	.align	2
 	.globl	xTaskGetTickCountFromISR
 	.type	xTaskGetTickCountFromISR, @function
 xTaskGetTickCountFromISR:
@@ -2715,7 +2715,7 @@ xTaskGetTickCountFromISR:
 	.cfi_endproc
 .LFE31:
 	.size	xTaskGetTickCountFromISR, .-xTaskGetTickCountFromISR
-	.align	1
+	.align	2
 	.globl	uxTaskGetNumberOfTasks
 	.type	uxTaskGetNumberOfTasks, @function
 uxTaskGetNumberOfTasks:
@@ -2739,7 +2739,7 @@ uxTaskGetNumberOfTasks:
 	.cfi_endproc
 .LFE32:
 	.size	uxTaskGetNumberOfTasks, .-uxTaskGetNumberOfTasks
-	.align	1
+	.align	2
 	.globl	pcTaskGetName
 	.type	pcTaskGetName, @function
 pcTaskGetName:
@@ -2785,7 +2785,7 @@ pcTaskGetName:
 	.cfi_endproc
 .LFE33:
 	.size	pcTaskGetName, .-pcTaskGetName
-	.align	1
+	.align	2
 	.type	prvSearchForNameWithinSingleList, @function
 prvSearchForNameWithinSingleList:
 .LFB34:
@@ -2877,7 +2877,7 @@ prvSearchForNameWithinSingleList:
 	.cfi_endproc
 .LFE34:
 	.size	prvSearchForNameWithinSingleList, .-prvSearchForNameWithinSingleList
-	.align	1
+	.align	2
 	.globl	xTaskGetHandle
 	.type	xTaskGetHandle, @function
 xTaskGetHandle:
@@ -2978,7 +2978,7 @@ xTaskGetHandle:
 	.cfi_endproc
 .LFE35:
 	.size	xTaskGetHandle, .-xTaskGetHandle
-	.align	1
+	.align	2
 	.globl	xTaskGetStaticBuffers
 	.type	xTaskGetStaticBuffers, @function
 xTaskGetStaticBuffers:
@@ -3064,7 +3064,7 @@ xTaskGetStaticBuffers:
 	.cfi_endproc
 .LFE36:
 	.size	xTaskGetStaticBuffers, .-xTaskGetStaticBuffers
-	.align	1
+	.align	2
 	.globl	uxTaskGetSystemState
 	.type	uxTaskGetSystemState, @function
 uxTaskGetSystemState:
@@ -3208,7 +3208,7 @@ uxTaskGetSystemState:
 	.cfi_endproc
 .LFE37:
 	.size	uxTaskGetSystemState, .-uxTaskGetSystemState
-	.align	1
+	.align	2
 	.globl	xTaskGetIdleTaskHandle
 	.type	xTaskGetIdleTaskHandle, @function
 xTaskGetIdleTaskHandle:
@@ -3245,7 +3245,7 @@ xTaskGetIdleTaskHandle:
 	.cfi_endproc
 .LFE38:
 	.size	xTaskGetIdleTaskHandle, .-xTaskGetIdleTaskHandle
-	.align	1
+	.align	2
 	.globl	xTaskGetIdleTaskHandleForCore
 	.type	xTaskGetIdleTaskHandleForCore, @function
 xTaskGetIdleTaskHandleForCore:
@@ -3299,7 +3299,7 @@ xTaskGetIdleTaskHandleForCore:
 	.cfi_endproc
 .LFE39:
 	.size	xTaskGetIdleTaskHandleForCore, .-xTaskGetIdleTaskHandleForCore
-	.align	1
+	.align	2
 	.globl	xTaskCatchUpTicks
 	.type	xTaskCatchUpTicks, @function
 xTaskCatchUpTicks:
@@ -3369,7 +3369,7 @@ xTaskCatchUpTicks:
 	.cfi_endproc
 .LFE40:
 	.size	xTaskCatchUpTicks, .-xTaskCatchUpTicks
-	.align	1
+	.align	2
 	.globl	xTaskAbortDelay
 	.type	xTaskAbortDelay, @function
 xTaskAbortDelay:
@@ -3536,7 +3536,7 @@ xTaskAbortDelay:
 	.cfi_endproc
 .LFE41:
 	.size	xTaskAbortDelay, .-xTaskAbortDelay
-	.align	1
+	.align	2
 	.globl	xTaskIncrementTick
 	.type	xTaskIncrementTick, @function
 xTaskIncrementTick:
@@ -3811,7 +3811,7 @@ xTaskIncrementTick:
 .LFE42:
 	.size	xTaskIncrementTick, .-xTaskIncrementTick
 	.globl	__clzsi2
-	.align	1
+	.align	2
 	.globl	vTaskSwitchContext
 	.type	vTaskSwitchContext, @function
 vTaskSwitchContext:
@@ -3941,7 +3941,7 @@ vTaskSwitchContext:
 	.cfi_endproc
 .LFE43:
 	.size	vTaskSwitchContext, .-vTaskSwitchContext
-	.align	1
+	.align	2
 	.globl	vTaskPlaceOnEventList
 	.type	vTaskPlaceOnEventList, @function
 vTaskPlaceOnEventList:
@@ -3986,7 +3986,7 @@ vTaskPlaceOnEventList:
 	.cfi_endproc
 .LFE44:
 	.size	vTaskPlaceOnEventList, .-vTaskPlaceOnEventList
-	.align	1
+	.align	2
 	.globl	vTaskPlaceOnUnorderedEventList
 	.type	vTaskPlaceOnUnorderedEventList, @function
 vTaskPlaceOnUnorderedEventList:
@@ -4073,7 +4073,7 @@ vTaskPlaceOnUnorderedEventList:
 	.cfi_endproc
 .LFE45:
 	.size	vTaskPlaceOnUnorderedEventList, .-vTaskPlaceOnUnorderedEventList
-	.align	1
+	.align	2
 	.globl	vTaskPlaceOnEventListRestricted
 	.type	vTaskPlaceOnEventListRestricted, @function
 vTaskPlaceOnEventListRestricted:
@@ -4150,7 +4150,7 @@ vTaskPlaceOnEventListRestricted:
 	.cfi_endproc
 .LFE46:
 	.size	vTaskPlaceOnEventListRestricted, .-vTaskPlaceOnEventListRestricted
-	.align	1
+	.align	2
 	.globl	xTaskRemoveFromEventList
 	.type	xTaskRemoveFromEventList, @function
 xTaskRemoveFromEventList:
@@ -4370,7 +4370,7 @@ xTaskRemoveFromEventList:
 	.cfi_endproc
 .LFE47:
 	.size	xTaskRemoveFromEventList, .-xTaskRemoveFromEventList
-	.align	1
+	.align	2
 	.globl	vTaskRemoveFromUnorderedEventList
 	.type	vTaskRemoveFromUnorderedEventList, @function
 vTaskRemoveFromUnorderedEventList:
@@ -4560,7 +4560,7 @@ vTaskRemoveFromUnorderedEventList:
 	.cfi_endproc
 .LFE48:
 	.size	vTaskRemoveFromUnorderedEventList, .-vTaskRemoveFromUnorderedEventList
-	.align	1
+	.align	2
 	.globl	vTaskSetTimeOutState
 	.type	vTaskSetTimeOutState, @function
 vTaskSetTimeOutState:
@@ -4627,7 +4627,7 @@ vTaskSetTimeOutState:
 	.cfi_endproc
 .LFE49:
 	.size	vTaskSetTimeOutState, .-vTaskSetTimeOutState
-	.align	1
+	.align	2
 	.globl	vTaskInternalSetTimeOutState
 	.type	vTaskInternalSetTimeOutState, @function
 vTaskInternalSetTimeOutState:
@@ -4658,7 +4658,7 @@ vTaskInternalSetTimeOutState:
 	.cfi_endproc
 .LFE50:
 	.size	vTaskInternalSetTimeOutState, .-vTaskInternalSetTimeOutState
-	.align	1
+	.align	2
 	.globl	xTaskCheckForTimeOut
 	.type	xTaskCheckForTimeOut, @function
 xTaskCheckForTimeOut:
@@ -4788,7 +4788,7 @@ xTaskCheckForTimeOut:
 	.cfi_endproc
 .LFE51:
 	.size	xTaskCheckForTimeOut, .-xTaskCheckForTimeOut
-	.align	1
+	.align	2
 	.globl	vTaskMissedYield
 	.type	vTaskMissedYield, @function
 vTaskMissedYield:
@@ -4813,7 +4813,7 @@ vTaskMissedYield:
 	.cfi_endproc
 .LFE52:
 	.size	vTaskMissedYield, .-vTaskMissedYield
-	.align	1
+	.align	2
 	.globl	uxTaskGetTaskNumber
 	.type	uxTaskGetTaskNumber, @function
 uxTaskGetTaskNumber:
@@ -4848,7 +4848,7 @@ uxTaskGetTaskNumber:
 	.cfi_endproc
 .LFE53:
 	.size	uxTaskGetTaskNumber, .-uxTaskGetTaskNumber
-	.align	1
+	.align	2
 	.globl	vTaskSetTaskNumber
 	.type	vTaskSetTaskNumber, @function
 vTaskSetTaskNumber:
@@ -4880,7 +4880,7 @@ vTaskSetTaskNumber:
 	.cfi_endproc
 .LFE54:
 	.size	vTaskSetTaskNumber, .-vTaskSetTaskNumber
-	.align	1
+	.align	2
 	.type	prvIdleTask, @function
 prvIdleTask:
 .LFB55:
@@ -4900,7 +4900,7 @@ prvIdleTask:
 	.cfi_endproc
 .LFE55:
 	.size	prvIdleTask, .-prvIdleTask
-	.align	1
+	.align	2
 	.type	prvInitialiseTaskLists, @function
 prvInitialiseTaskLists:
 .LFB56:
@@ -4968,7 +4968,7 @@ prvInitialiseTaskLists:
 	.cfi_endproc
 .LFE56:
 	.size	prvInitialiseTaskLists, .-prvInitialiseTaskLists
-	.align	1
+	.align	2
 	.type	prvCheckTasksWaitingTermination, @function
 prvCheckTasksWaitingTermination:
 .LFB57:
@@ -5045,7 +5045,7 @@ prvCheckTasksWaitingTermination:
 	.cfi_endproc
 .LFE57:
 	.size	prvCheckTasksWaitingTermination, .-prvCheckTasksWaitingTermination
-	.align	1
+	.align	2
 	.globl	vTaskGetInfo
 	.type	vTaskGetInfo, @function
 vTaskGetInfo:
@@ -5214,7 +5214,7 @@ vTaskGetInfo:
 	.cfi_endproc
 .LFE58:
 	.size	vTaskGetInfo, .-vTaskGetInfo
-	.align	1
+	.align	2
 	.type	prvListTasksWithinSingleList, @function
 prvListTasksWithinSingleList:
 .LFB59:
@@ -5283,7 +5283,7 @@ prvListTasksWithinSingleList:
 	.cfi_endproc
 .LFE59:
 	.size	prvListTasksWithinSingleList, .-prvListTasksWithinSingleList
-	.align	1
+	.align	2
 	.type	prvTaskCheckFreeStackSpace, @function
 prvTaskCheckFreeStackSpace:
 .LFB60:
@@ -5323,7 +5323,7 @@ prvTaskCheckFreeStackSpace:
 	.cfi_endproc
 .LFE60:
 	.size	prvTaskCheckFreeStackSpace, .-prvTaskCheckFreeStackSpace
-	.align	1
+	.align	2
 	.globl	uxTaskGetStackHighWaterMark
 	.type	uxTaskGetStackHighWaterMark, @function
 uxTaskGetStackHighWaterMark:
@@ -5366,7 +5366,7 @@ uxTaskGetStackHighWaterMark:
 	.cfi_endproc
 .LFE61:
 	.size	uxTaskGetStackHighWaterMark, .-uxTaskGetStackHighWaterMark
-	.align	1
+	.align	2
 	.type	prvDeleteTCB, @function
 prvDeleteTCB:
 .LFB62:
@@ -5421,7 +5421,7 @@ prvDeleteTCB:
 	.cfi_endproc
 .LFE62:
 	.size	prvDeleteTCB, .-prvDeleteTCB
-	.align	1
+	.align	2
 	.type	prvResetNextTaskUnblockTime, @function
 prvResetNextTaskUnblockTime:
 .LFB63:
@@ -5458,7 +5458,7 @@ prvResetNextTaskUnblockTime:
 	.cfi_endproc
 .LFE63:
 	.size	prvResetNextTaskUnblockTime, .-prvResetNextTaskUnblockTime
-	.align	1
+	.align	2
 	.globl	xTaskGetCurrentTaskHandle
 	.type	xTaskGetCurrentTaskHandle, @function
 xTaskGetCurrentTaskHandle:
@@ -5484,7 +5484,7 @@ xTaskGetCurrentTaskHandle:
 	.cfi_endproc
 .LFE64:
 	.size	xTaskGetCurrentTaskHandle, .-xTaskGetCurrentTaskHandle
-	.align	1
+	.align	2
 	.globl	xTaskGetCurrentTaskHandleForCore
 	.type	xTaskGetCurrentTaskHandleForCore, @function
 xTaskGetCurrentTaskHandleForCore:
@@ -5515,7 +5515,7 @@ xTaskGetCurrentTaskHandleForCore:
 	.cfi_endproc
 .LFE65:
 	.size	xTaskGetCurrentTaskHandleForCore, .-xTaskGetCurrentTaskHandleForCore
-	.align	1
+	.align	2
 	.globl	xTaskGetSchedulerState
 	.type	xTaskGetSchedulerState, @function
 xTaskGetSchedulerState:
@@ -5554,7 +5554,7 @@ xTaskGetSchedulerState:
 	.cfi_endproc
 .LFE66:
 	.size	xTaskGetSchedulerState, .-xTaskGetSchedulerState
-	.align	1
+	.align	2
 	.globl	xTaskPriorityInherit
 	.type	xTaskPriorityInherit, @function
 xTaskPriorityInherit:
@@ -5727,7 +5727,7 @@ xTaskPriorityInherit:
 	.cfi_endproc
 .LFE67:
 	.size	xTaskPriorityInherit, .-xTaskPriorityInherit
-	.align	1
+	.align	2
 	.globl	xTaskPriorityDisinherit
 	.type	xTaskPriorityDisinherit, @function
 xTaskPriorityDisinherit:
@@ -5890,7 +5890,7 @@ xTaskPriorityDisinherit:
 	.cfi_endproc
 .LFE68:
 	.size	xTaskPriorityDisinherit, .-xTaskPriorityDisinherit
-	.align	1
+	.align	2
 	.globl	vTaskPriorityDisinheritAfterTimeout
 	.type	vTaskPriorityDisinheritAfterTimeout, @function
 vTaskPriorityDisinheritAfterTimeout:
@@ -6075,7 +6075,7 @@ vTaskPriorityDisinheritAfterTimeout:
 	.cfi_endproc
 .LFE69:
 	.size	vTaskPriorityDisinheritAfterTimeout, .-vTaskPriorityDisinheritAfterTimeout
-	.align	1
+	.align	2
 	.globl	uxTaskResetEventItemValue
 	.type	uxTaskResetEventItemValue, @function
 uxTaskResetEventItemValue:
@@ -6110,7 +6110,7 @@ uxTaskResetEventItemValue:
 	.cfi_endproc
 .LFE70:
 	.size	uxTaskResetEventItemValue, .-uxTaskResetEventItemValue
-	.align	1
+	.align	2
 	.globl	pvTaskIncrementMutexHeldCount
 	.type	pvTaskIncrementMutexHeldCount, @function
 pvTaskIncrementMutexHeldCount:
@@ -6144,7 +6144,7 @@ pvTaskIncrementMutexHeldCount:
 	.cfi_endproc
 .LFE71:
 	.size	pvTaskIncrementMutexHeldCount, .-pvTaskIncrementMutexHeldCount
-	.align	1
+	.align	2
 	.globl	ulTaskGenericNotifyTake
 	.type	ulTaskGenericNotifyTake, @function
 ulTaskGenericNotifyTake:
@@ -6308,7 +6308,7 @@ ulTaskGenericNotifyTake:
 	.cfi_endproc
 .LFE72:
 	.size	ulTaskGenericNotifyTake, .-ulTaskGenericNotifyTake
-	.align	1
+	.align	2
 	.globl	xTaskGenericNotifyWait
 	.type	xTaskGenericNotifyWait, @function
 xTaskGenericNotifyWait:
@@ -6499,7 +6499,7 @@ xTaskGenericNotifyWait:
 	.cfi_endproc
 .LFE73:
 	.size	xTaskGenericNotifyWait, .-xTaskGenericNotifyWait
-	.align	1
+	.align	2
 	.globl	xTaskGenericNotify
 	.type	xTaskGenericNotify, @function
 xTaskGenericNotify:
@@ -6810,7 +6810,7 @@ xTaskGenericNotify:
 	.cfi_endproc
 .LFE74:
 	.size	xTaskGenericNotify, .-xTaskGenericNotify
-	.align	1
+	.align	2
 	.globl	xTaskGenericNotifyFromISR
 	.type	xTaskGenericNotifyFromISR, @function
 xTaskGenericNotifyFromISR:
@@ -7140,7 +7140,7 @@ xTaskGenericNotifyFromISR:
 	.cfi_endproc
 .LFE75:
 	.size	xTaskGenericNotifyFromISR, .-xTaskGenericNotifyFromISR
-	.align	1
+	.align	2
 	.globl	vTaskGenericNotifyGiveFromISR
 	.type	vTaskGenericNotifyGiveFromISR, @function
 vTaskGenericNotifyGiveFromISR:
@@ -7375,7 +7375,7 @@ vTaskGenericNotifyGiveFromISR:
 	.cfi_endproc
 .LFE76:
 	.size	vTaskGenericNotifyGiveFromISR, .-vTaskGenericNotifyGiveFromISR
-	.align	1
+	.align	2
 	.globl	xTaskGenericNotifyStateClear
 	.type	xTaskGenericNotifyStateClear, @function
 xTaskGenericNotifyStateClear:
@@ -7463,7 +7463,7 @@ xTaskGenericNotifyStateClear:
 	.cfi_endproc
 .LFE77:
 	.size	xTaskGenericNotifyStateClear, .-xTaskGenericNotifyStateClear
-	.align	1
+	.align	2
 	.globl	ulTaskGenericNotifyValueClear
 	.type	ulTaskGenericNotifyValueClear, @function
 ulTaskGenericNotifyValueClear:
@@ -7557,7 +7557,7 @@ ulTaskGenericNotifyValueClear:
 	.cfi_endproc
 .LFE78:
 	.size	ulTaskGenericNotifyValueClear, .-ulTaskGenericNotifyValueClear
-	.align	1
+	.align	2
 	.type	prvAddCurrentTaskToDelayedList, @function
 prvAddCurrentTaskToDelayedList:
 .LFB79:
@@ -7692,7 +7692,7 @@ prvAddCurrentTaskToDelayedList:
 	.cfi_endproc
 .LFE79:
 	.size	prvAddCurrentTaskToDelayedList, .-prvAddCurrentTaskToDelayedList
-	.align	1
+	.align	2
 	.globl	vTaskResetState
 	.type	vTaskResetState, @function
 vTaskResetState:
@@ -7753,3 +7753,4 @@ vTaskResetState:
 	.size	vTaskResetState, .-vTaskResetState
 	.ident	"GCC: (gc891d8dc23e) 13.2.0"
 	.section	.note.GNU-stack,"",@progbits
+
