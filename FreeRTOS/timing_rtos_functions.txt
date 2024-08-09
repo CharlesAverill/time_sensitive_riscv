@@ -1,0 +1,15 @@
+NOTE: configASSERT calls can be erased without effect, they're just for debugging
+
+FreeRTOS-Kernel/tasks.c:vTaskSwitchContext - many function calls, but probably the most significant target
+FreeRTOS-Kernel/tasks.c:vTaskPlaceOnEventList - few function calls
+FreeRTOS-Kernel/tasks.c:xTaskIncrementTick - many function calls
+FreeRTOS-Kernel/portable/IAR/AtmelSAM9XE/port.c:vPortTickISR - good target
+	(above: can find similar code in most ports - e.g. GCC/ARM_AARCH64/port.c:FreeRTOS_Tick_Handler)
+	(RISC-V port seems unfinished)
+FreeRTOS-Kernel/queue.c:xQueueGenericSend - many function calls
+FreeRTOS-Kernel/queue.c:xQueueReceive - many function calls
+FreeRTOS-Kernel/queue.c:xQueueSemaphoreTake - many function calls
+FreeRTOS-Kernel/event_groups.c:xEventGroupSetBits,xEventGroupWaitBits - many function calls
+FreeRTOS-Kernel/timers.c:xTimerCreate - many function calls
+FreeRTOS-Kernel/tasks.c:vTaskStepTick,vTaskPlaceOnEventListRestricted - possible targets
+FreeRTOS-Kernel/portable/MemMang/heap_4.c:pvPortMalloc - possible target, complex but not *too* many function calls and is very critical
