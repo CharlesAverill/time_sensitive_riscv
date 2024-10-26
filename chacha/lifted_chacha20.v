@@ -1,7 +1,7 @@
 Require Import Picinae_riscv.
 Require Import NArith.
 
-Definition chacha20 (_ : store) (a : addr) : N :=
+Definition chacha20 (a : addr) : N :=
     match a with
     (* <_ChaCha20_Block> *)
     | 0x0 => 0xfc010113 (* addi sp,sp,-64  *)
@@ -336,6 +336,3 @@ Definition chacha20 (_ : store) (a : addr) : N :=
     | 0x514 => 0x00008067 (* ret  *)
     | _ => 0
     end.
-
-Definition start_chacha20 : N := 0.
-Definition end_chacha20 : N := 514.
