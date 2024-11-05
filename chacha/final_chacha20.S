@@ -103,7 +103,7 @@ _ChaCha20_Block_Loop:
 	QuarterRound		s3, s4, s9, t1
 
 	addi				t3, t3, -1
-	bne					t3, zero, _ChaCha20_Loop
+	bne					t3, zero, _ChaCha20_Block_Loop
 
 	# Save to out
 	sw					s0,   0(a6)
