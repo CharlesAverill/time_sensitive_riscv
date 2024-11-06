@@ -37,7 +37,7 @@ Definition chacha20 (a : addr) : N :=
     | 0x78 => 0x00072283 (* lw t0,0(a4)  *)
     | 0x7c => 0x00472303 (* lw t1,4(a4)  *)
     | 0x80 => 0x00872383 (* lw t2,8(a4)  *)
-    | 0x84 => 0x00a07e13 (* andi t3,zero,10  *)
+    | 0x84 => 0x00a06e13 (* ori t3,zero,10  *)
     (* <_ChaCha20_Block_Loop> *)
     | 0x88 => 0x01440433 (* add s0,s0,s4  *)
     | 0x8c => 0x0087c7b3 (* xor a5,a5,s0  *)
