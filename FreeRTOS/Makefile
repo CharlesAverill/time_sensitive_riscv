@@ -15,7 +15,7 @@ GCC_VERSION_NEED_ZICSR = "110100"
 
 CFLAGS += $(INCLUDE_DIRS) -fmessage-length=0 \
           -mabi=ilp32 -mcmodel=medlow -ffunction-sections -fdata-sections \
-          -Wno-unused-parameter -nostartfiles -g3 -Os -march=rv32imd
+          -Wno-unused-parameter -nostartfiles -g3 -Os -march=rv32imdzbb
 
 #ifeq ($(shell test $(GCC_VERSION) -ge $(GCC_VERSION_NEED_ZICSR) && echo true),true)
 #    CFLAGS += -march=rv32imac_zicsr
@@ -30,7 +30,7 @@ CFLAGS += --specs=nano.specs -fno-builtin-printf
 endif
 
 LDFLAGS += -nostartfiles -Xlinker --gc-sections -Wl,-Map,$(OUTPUT_DIR)/RTOSDemo.map \
-           -T./fake_rom.ld -march=rv32imd -mabi=ilp32 -mcmodel=medlow -Xlinker \
+           -T./fake_rom.ld -march=rv32imdzbb -mabi=ilp32 -mcmodel=medlow -Xlinker \
            --defsym=__stack_size=350 -Wl,--start-group -Wl,--end-group
 
 ifeq ($(PICOLIBC),1)
